@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useFonts } from '@use-expo/font';
+import { AppLoading } from 'expo';
 
 //components
 import Splash from './components/splash';
@@ -29,10 +30,14 @@ export default function App() {
   let [fontsLoaded] = useFonts({
     'Open Sans': require('./assets/fonts/OpenSans-Bold.ttf')
   })
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
   return (
     <NavigationContainer>
     <MyStack />
   </NavigationContainer>
   );
+  }
 }
 
