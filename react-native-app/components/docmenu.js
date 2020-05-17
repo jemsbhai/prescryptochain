@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
-export default class Menu extends Component {
+export default class DocMenu extends Component {
     render(){
         return (
             <View style={styles.container}>
             <Image source={require('../assets/menubg.png')} style={styles.bg}/>
             
-            <Text style={styles.txt} onPress={() => this.props.navigation.navigate('Scan')}>Consultation</Text>
-            <Text style={styles.txt} onPress={() => this.props.navigation.navigate('ViewRx')}>Prescription</Text>
-            <Text style={styles.txt}>Pharmacy</Text>
+            <Text style={styles.txt} onPress={() => this.props.navigation.navigate('DocQr')}>Profile</Text>
+            <Text style={styles.txt} onPress={() => this.props.navigation.navigate('DocScan')}>Patient</Text>
             <TouchableOpacity style={styles.img} onPress={() => this.props.navigation.navigate('Scan')}><Image source={require('../assets/x.png')} style={{flex:0.2, resizeMode:'contain', marginTop:50}}/></TouchableOpacity>
             </View>
         )

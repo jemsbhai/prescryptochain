@@ -12,9 +12,14 @@ import Scan from './components/scan';
 import Prescription from './components/prescription';
 import Menu from './components/menu';
 import Login from './components/login';
+import LoginDoc from './components/logindoc';
+import LoginPat from './components/loginPat';
 import ViewRx from './components/viewrx';
 import RxList from './components/rxlist';
-import PatQR from './assets/patqr';
+import PatQR from './components/patqr';
+import DocScan from './components/docscan'
+import DocMenu from './components/docmenu';
+import PScan from './components/pscan';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +50,16 @@ function MyStack() {
       options={{ headerShown: false}}
     />
     <Stack.Screen 
+      name="DocScan" 
+      component={DocScan}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="DocMenu" 
+      component={DocMenu}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
       name="Prescription" 
       component={Prescription}
       options={{ headerShown: false}}
@@ -60,6 +75,16 @@ function MyStack() {
       options={{ headerShown: false}}
     />
     <Stack.Screen 
+      name="LoginPat" 
+      component={LoginPat}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="LoginDoc" 
+      component={LoginDoc}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
       name="ViewRx" 
       component={ViewRx}
       options={{ headerShown: false}}
@@ -67,6 +92,11 @@ function MyStack() {
     <Stack.Screen 
       name="RxList" 
       component={RxList}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="PScan" 
+      component={PScan}
       options={{ headerShown: false}}
     />
     </Stack.Navigator>

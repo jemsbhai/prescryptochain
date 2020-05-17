@@ -33,6 +33,7 @@ export default class DocQR extends Component {
             backgroundColor='#EBF5FF'
             color='#03256C'
           />
+          <Text style={styles.btn} onPress={() => this.props.navigation.navigate('DocScan')}>Scan Patient's Code</Text>
         </View>
         );
     }
@@ -59,5 +60,16 @@ const styles = StyleSheet.create({
           color: '#2541B2',
           marginBottom: 80,
 
-      }
+      },
+      btn:{
+        fontFamily:'Open Sans',
+        fontSize:25,
+        backgroundColor:'#03256C',
+        width:'60%',
+        color:'#EEF5FF',
+        padding:10,
+        borderRadius:10,
+        alignSelf:'center',
+        marginTop:60,
+    }
 });     

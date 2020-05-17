@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-export default class Login extends Component {
+export default class LoginPat extends Component {
     render(){
         return (
             <View style={styles.container}>
@@ -14,7 +14,7 @@ export default class Login extends Component {
             <TextInput style={styles.input} defaultValue='Username'></TextInput>
             <TextInput style={styles.input} secureTextEntry={true}>Password</TextInput>
 
-                <Text style={styles.btn} onPress={() => this.props.navigation.navigate('PScan')}>Submit</Text>
+                <Text style={styles.btn} onPress={() => this.props.navigation.navigate('PatQr')}>Submit</Text>
             </View>
             
             </View>

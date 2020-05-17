@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import QRCode from 'react-native-qrcode-svg';
 
 export default class ViewRx extends Component {
     render(){
@@ -15,6 +15,12 @@ export default class ViewRx extends Component {
             <Text style={styles.input}>Dosage</Text>
             <Text style={styles.input}>Refill</Text>
             <Text style={styles.input}>Refill Count</Text>
+            <View style={{alignItems:'center'}}><QRCode
+            value="Panadol"
+            size={100}
+            backgroundColor='#EBF5FF'
+            color='#03256C'
+          /></View>
             </View>
             <Image source={require('../assets/pres.png')} style={styles.img}/>
             </View>

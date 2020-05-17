@@ -5,21 +5,22 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  Image,
 } from 'react-native';
 import Constants from 'expo-constants';
 
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    title: 'Prescription 1',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    title: 'Prescription 2',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    title: 'Prescription 3',
   },
 ];
 
@@ -27,10 +28,6 @@ function Item({ id, title, selected, onSelect }) {
   return (
     <TouchableOpacity
       onPress={() => onSelect(id)}
-      style={[
-        styles.item,
-        { backgroundColor: selected ? '#6e3b6e' : '#f9c2ff' },
-      ]}
     >
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
@@ -65,22 +62,38 @@ export default function RxList() {
         keyExtractor={item => item.id}
         extraData={selected}
       />
+      <Image source={require('../assets/health.png')} style={styles.img}/>
     </SafeAreaView>
+    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight,
+    backgroundColor:'#2541B2',
+    padding: 20,
+    alignContent:'center',
+    justifyContent:'center',
+    paddingTop:100,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: '#EEF5EF',
     padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    margin:20,
+    borderRadius:5,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
+    fontFamily:'Open Sans',
+    color:'#EBF5FF',
+    textAlign:'center',
+    marginTop:30,
+  },
+  img: {
+    flex: 2,
+    resizeMode: 'contain',
+    alignSelf:'center',
+    marginBottom:20
   },
 });

@@ -5,7 +5,7 @@ import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-export default class Scan extends React.Component {
+export default class PScan extends React.Component {
   state = {
     hasCameraPermission: null,
     scanned: false,
@@ -14,7 +14,7 @@ export default class Scan extends React.Component {
 
   async componentDidMount() {
     this.getPermissionsAsync();
-    fetch('https://woodle.ngrok.io/patient/5ec04ed9f80f9328703088b1', {
+    fetch('https://woodle.ngrok.io/doctor/5ec04ec9f80f9328703088b0', {
            method: 'GET'
         })
         .then((response) => response.json())
@@ -52,10 +52,10 @@ export default class Scan extends React.Component {
           backgroundColor: '#EBF5FF',
         }}>
         <View style={{flex: 0.2, flexDirection: 'row',backgroundColor:'#2541B2',justifyContent:"flex-start"}}>
-        <TouchableOpacity style={styles.img} onPress={() => this.props.navigation.navigate('Menu')}><Image source={require('../assets/menu.png')} style={{width:'89%',height:'89%',marginTop:10, resizeMode:'contain'}}/></TouchableOpacity>
+        <TouchableOpacity style={styles.img} onPress={() => this.props.navigation.navigate('DocMenu')}><Image source={require('../assets/menu.png')} style={{width:'89%',height:'89%',marginTop:10, resizeMode:'contain'}}/></TouchableOpacity>
         <Image source={require('../assets/avatar.png')} style={styles.img}/>
         <Text style={styles.patient}>{this.state.data.name}</Text></View>
-        <Text style={styles.txt}>Scan your doctor's QR Code</Text>
+        <Text style={styles.txt}>Scan prescription QR Code</Text>
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
           style={styles.qr}
