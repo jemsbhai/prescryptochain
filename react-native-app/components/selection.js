@@ -8,9 +8,9 @@ export default class Selection extends Component {
             <View style={styles.container}>
             <Text style={{fontFamily: "Open Sans" ,fontSize: 40, alignSelf: "flex-start", marginTop: 60, marginLeft: 20, color: "#03256C"}}>I am a</Text>
             <Image source={require('../assets/doctors.png')} style={styles.img}/>
-            <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C", marginTop: -5}} onPress={() => console.log('Doctor')}>Doctor</Text>
+            <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C", marginTop: -5}} onPress={() => this.props.navigation.navigate('DocQr')}>Doctor</Text>
             <Image source={require('../assets/patient.png')} style={styles.img}/>
-            <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C"}}onPress={() => console.log('Patient')}>Patient</Text>
+            <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C"}}onPress={() => this.props.navigation.navigate('Scan')}>Patient</Text>
             <Image source={require('../assets/pharmacist.png')} style={styles.img}/>
             <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C", marginBottom: 70}}onPress={() => console.log('Pharmacist')}>Pharmacist</Text>
             </View>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   img: {
-    flex: 1,
+    flex: 0.3,
     resizeMode: 'contain',
     width: '30%',
   }

@@ -7,6 +7,8 @@ import { AppLoading } from 'expo';
 //components
 import Splash from './components/splash';
 import Selection from './components/selection';
+import DocQr from './components/docqr';
+import Scan from './components/scan';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +21,16 @@ function MyStack() {
     <Stack.Screen 
       name="Selection" 
       component={Selection}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="DocQr" 
+      component={DocQr}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="Scan" 
+      component={Scan}
       options={{ headerShown: false}}
     />
     </Stack.Navigator>
