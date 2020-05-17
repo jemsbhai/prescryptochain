@@ -1,6 +1,18 @@
+# Prescryptochain
+- secure, authenticated tamper proof prescriptions and electronic medical records on the hedera blockchain
+
+Created for [HackTheChain2020](https://hackthechain.devpost.com)
+
 # Prescryptochain API
 
 API build on NodeJS Express, MongoDB, Google Cloud Functions  
+
+Features:
+
+* Mongodb database for user records and keeping track of prescription id
+* Hedera File Service to store encrypted prescription created by doctor 
+
+![output](https://github.com/jemsbhai/prescryptochain/raw/master/server/Output.png)
 
 ## API docs
 
