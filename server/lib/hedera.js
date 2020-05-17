@@ -1,43 +1,49 @@
-class Chain {
-    constructor() {
-        if (!!SingletonClass.instance) {
-            return SingletonClass.instance;
-        }
-
-        SingletonClass.instance = this;
-
-        return this;
-    }
-}
-
-// Import the Hedera Hashgraph JS SDK
-// Example uses Hedera JavaScript SDK v1.1.8
-const { Client } = require("@hashgraph/sdk");
-// Allow access to our .env file variables
-require("dotenv").config();
-
+const log = require('debug')('pxc:hedera');
+const { Client, FileCreateTransaction, Ed25519PrivateKey, Hbar, FileContentsQuery } = require("@hashgraph/sdk");
 // Grab your account ID and private key from the .env file
-const operatorAccountId = process.env.HEDERA_ACCOUNT_ID;
-const operatorPrivateKey = process.env.HEDERA_PRIVATE_KEY;
+const operatorAccount = process.env.HEDERA_ACCOUNT_ID;
+const operatorPrivateKey = Ed25519PrivateKey.fromString(process.env.HEDERA_PRIVATE_KEY);
 
+async function upload(data) {
+    log('uploading...')
+    const operatorPublicKey = operatorPrivateKey.publicKey;
 
-// If we weren't able to grab it, we should throw a new error
-if (operatorPrivateKey == null ||
-    operatorAccountId == null ) {
-    throw new Error("environment variables OPERATOR_KEY and OPERATOR_ID must be present");
+    if (operatorPrivateKey == null || operatorAccount == null) {
+        throw new Error("environment variables OPERATOR_KEY and OPERATOR_ID must be present");
+    }
+
+    const client = Client.forTestnet();
+    client.setOperator(operatorAccount, operatorPrivateKey);
+
+    const transactionId = await new FileCreateTransaction()
+        .setContents(data)
+        .addKey(operatorPublicKey) // Defines the "admin" of this file
+        .setMaxTransactionFee(new Hbar(15))
+        .execute(client);
+
+    const receipt = await transactionId.getReceipt(client);
+    const fileId = receipt.getFileId();
+    log("new file id =", fileId);
+    return fileId;
 }
 
-// Create our connection to the Hedera network
-// The Hedera JS SDK makes this reallyyy easy!
-const client = Client.forTestnet();
+async function download(fileId) {
+    if (operatorPrivateKey == null || operatorAccount == null) {
+        throw new Error("environment variables OPERATOR_KEY and OPERATOR_ID must be present");
+    }
 
-// Set your client account ID and private key used to pay for transaction fees and sign transactions
-client.setOperator(operatorAccountId, operatorPrivateKey);
+    const client = Client.forTestnet();
+    client.setOperator(operatorAccount, operatorPrivateKey);
 
-// Hedera is an asynchronous environment :)
-(async function() {
+    const resp = await new FileContentsQuery()
+        .setFileId(fileId)
+        .execute(client);
 
-  // Attempt to get and display the balance of our account
-  var currentBalance = (await client.getAccountBalance(operatorAccountId)).toString();
-  console.log("account balance:", currentBalance);
-})();
+    log(resp);
+    return resp;
+}
+
+module.exports = {
+    upload,
+    download
+}

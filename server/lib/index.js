@@ -25,7 +25,10 @@ app.get('/', (req, res) => res.send({ message: 'Prescryptochain!' }))
 
 app.use(clientErrorHandler);
 
-app.listen(port, () => log(`Example app listening at http://localhost:${port}`))
+const db= require('./db');
+db.connect().then(() => {
+    app.listen(port, () => log(`Example app listening at http://localhost:${port}`))
+});
 
 
 
