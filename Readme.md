@@ -85,4 +85,4 @@ Response:
 }
 ```
 
-![prescriptions](https://github.com/jemsbhai/prescryptochain/raw/master/server/ExamplePrescriptionRecords.png.png)
+![prescriptions](https://github.com/jemsbhai/prescryptochain/raw/master/server/ExamplePrescriptionRecords.png)
