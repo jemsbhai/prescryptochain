@@ -19,44 +19,31 @@ export default class Prescription extends Component {
         this.setState(state);
       }
 
- prescription(){
-    var dataToSend = {
-        "doctor": "5ec04ec9f80f9328703088b0",
-        "patient" : "5ec04ed9f80f9328703088b1",
-        "prescription": 
-        {
-            "drug": this.state.drug,
-            "dosage": this.state.dosage,
-            "refil": this.state.refil,
-            "refilRount": this.state.refilRount
-        }
-    };
-    var formBody = [];
-    for (var key in dataToSend) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-    //POST request 
-    fetch('https://woodle.ngrok.io/prescription/', {
-      method: "POST",
-      body: formBody,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-      },
-    })
-    .then((response) => response.json())
-    
-    .then((responseJson) => {
-        alert(JSON.stringify(responseJson));
-        console.log(responseJson);
-    })
-    
-    .catch((error) => {
-      alert(JSON.stringify(error));
-      console.error(error);
-    });
+ prescription= async () =>{
+        fetch('https://woodle.ngrok.io/prescription', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "doctor": "5ec04ec9f80f9328703088b0",
+                "patient" : "5ec04ed9f80f9328703088b1",
+                "prescription": 
+                {
+                    "drug": this.state.drug,
+                    "dosage": this.state.dosage,
+                    "refil": this.state.refil,
+                    "refilRount": this.state.refilRount
+                }
+            })
+      })
+          .then((response) => response.json())
+          .then((responseJson) => {
+       console.log(responseJson);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
   }
     
     render(){
