@@ -6,7 +6,7 @@ const client = new mongodb.MongoClient(process.env.MONGODB_CONNECTION_STRING, { 
 let db;
 
 async function connect() {
-    log(`Connectiong...`);
+    log(`Connecting...`);
     return new Promise((resolve, reject) => {
         client.connect((err) => {
             if (err) return reject(err);
@@ -28,7 +28,7 @@ async function getPatient(patientId) {
 }
 
 async function createPrescription(record) {
-    return db.insertOne('prescriptions', { record });
+    return db.collection('prescriptions').insertOne(record);
 }
 
 async function findPrescription(fileId) {

@@ -22,18 +22,22 @@ router
             const patient = await db.getPatient(patientId);
 
             const encrypedFile = await encryptJson(prescription, patient.publicKey, 'public')
-            const fileId = await hedera.upload(encrypedFile)
+            log(encrypedFile);
+            const fileId = await hedera.upload(encrypedFile);
 
             const record = {
                 patientId,
                 doctor,
-                fileId,
+                fileId: fileId.toString(),
                 created: new Date()
             };
 
             const result = await db.createPrescription(record);
-
-            res.send(result)
+            if (result && result.ops[0])
+                return res.send(result.ops[0]);
+            else {
+                return res.send(result);
+            }
         } catch (error) {
             log(error);
             next(error);
@@ -43,14 +47,20 @@ router
     .get('/prescription/:fileId', async (req, res, next) => {
         try {
             const fileId = req.params.fileId;
+            log(fileId)
             const prescription = await db.findPrescription(fileId);
             if (!prescription) throw new Error('Cant find prescription');
+            log(prescription);
+
+            const encryptedFile = await hedera.download(fileId);
+            log(encryptedFile);
+
 
             const patient = await db.getPatient(prescription.patientId);
             if (!patient) throw new Error('Cant find patient');
-            const decryptedFile = await decryptJson(prescription, patient.publicKey, 'public');
-
-
+            const decryptedFile = await decryptJson(encryptedFile, patient.publicKey, 'public');
+            log(encryptedFile);
+            res.send(decryptedFile);
         } catch (error) {
             log(error);
             next(error);

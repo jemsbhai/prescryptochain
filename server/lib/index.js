@@ -29,8 +29,3 @@ const db= require('./db');
 db.connect().then(() => {
     app.listen(port, () => log(`Example app listening at http://localhost:${port}`))
 });
-
-
-
-
-require('./hedera');

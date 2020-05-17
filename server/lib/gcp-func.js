@@ -10,21 +10,25 @@ async function generateKeyPair(seed) {
 }
 
 async function encryptJson(data, key, key_type) {
+    log('data: ', data);
+    log('key: ', key);
+    log('key_type: ', key_type);
     const plaintext = JSON.stringify(data);
     const url = process.env.GCP_ENCRYPT_FUNC;
-    log(url, key, key_type, plaintext);
+    log('plaintext:', plaintext);
     const response = await axios.post(url, {
         key, key_type, plaintext
     }, data);
-    log(response)
-    return response.data;
+    return response.data.ciphertext;
 }
 
-async function decryptJson(data, key, key_type) {
+async function decryptJson(ciphertext, key, key_type) {
     const url = process.env.GCP_DECRYPT_FUNC;
     log(url);
-    const response = await axios.post(url, { data, key, key_type });
-    log(response)
+    log('ciphertext: ', ciphertext);
+    log('key: ', key);
+    log('key_type: ', key_type);
+    const response = await axios.post(url, { ciphertext, key, key_type });
     const payload = JSON.parse(response.data.plaintext);
     return payload;
 }

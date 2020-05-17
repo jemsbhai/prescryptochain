@@ -27,6 +27,8 @@ async function upload(data) {
     return fileId;
 }
 
+const { buffer2str } = require('string-encode');
+
 async function download(fileId) {
     if (operatorPrivateKey == null || operatorAccount == null) {
         throw new Error("environment variables OPERATOR_KEY and OPERATOR_ID must be present");
@@ -38,9 +40,10 @@ async function download(fileId) {
     const resp = await new FileContentsQuery()
         .setFileId(fileId)
         .execute(client);
-
-    log(resp);
-    return resp;
+    
+    // decode back to utf8
+    const file = buffer2str(resp);
+    return file;
 }
 
 module.exports = {
