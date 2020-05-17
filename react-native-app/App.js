@@ -9,6 +9,12 @@ import Splash from './components/splash';
 import Selection from './components/selection';
 import DocQr from './components/docqr';
 import Scan from './components/scan';
+import Prescription from './components/prescription';
+import Menu from './components/menu';
+import Login from './components/login';
+import ViewRx from './components/viewrx';
+import RxList from './components/rxlist';
+import PatQR from './assets/patqr';
 
 const Stack = createStackNavigator();
 
@@ -29,8 +35,38 @@ function MyStack() {
       options={{ headerShown: false}}
     />
     <Stack.Screen 
+      name="PatQr" 
+      component={PatQR}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
       name="Scan" 
       component={Scan}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="Prescription" 
+      component={Prescription}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="Menu" 
+      component={Menu}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="Login" 
+      component={Login}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="ViewRx" 
+      component={ViewRx}
+      options={{ headerShown: false}}
+    />
+    <Stack.Screen 
+      name="RxList" 
+      component={RxList}
       options={{ headerShown: false}}
     />
     </Stack.Navigator>

@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-export default class Login extends Component {
+export default class ViewRx extends Component {
     render(){
         return (
             <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.txt}>Login</Text>
+                <Image source={require('../assets/medicine.png')} style={styles.logo}/>
+                <Text style={styles.txt}>Prescription</Text>
             </View>
-            <Image source={require('../assets/login.png')} style={styles.img}/>
             <View style={styles.presbox}>
-            <TextInput style={styles.input} defaultValue='Username'></TextInput>
-            <TextInput style={styles.input} secureTextEntry={true}>Password</TextInput>
-
-                <Text style={styles.btn}>Submit</Text>
+            <Text style={styles.input}>Medication</Text>
+            <Text style={styles.input}>Dosage</Text>
+            <Text style={styles.input}>Refill</Text>
+            <Text style={styles.input}>Refill Count</Text>
             </View>
-            
+            <Image source={require('../assets/pres.png')} style={styles.img}/>
             </View>
         )
     }
@@ -33,8 +33,7 @@ const styles = StyleSheet.create({
       flex: 0.3,
       resizeMode: 'contain',
       alignSelf:'center',
-      marginBottom:20,
-      marginTop:50,
+      marginBottom:20
     },
     txt: {
         fontFamily:'Open Sans',
@@ -74,15 +73,4 @@ const styles = StyleSheet.create({
         color:'#2541B2',
         marginBottom:20
     },
-    btn:{
-        fontFamily:'Open Sans',
-        fontSize:25,
-        backgroundColor:'#03256C',
-        width:'27.5%',
-        color:'#EEF5FF',
-        padding:10,
-        borderRadius:10,
-        alignSelf:'center',
-        marginTop:20,
-    }
   });

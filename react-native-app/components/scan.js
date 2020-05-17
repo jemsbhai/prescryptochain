@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image,Text, View, StyleSheet, Button } from 'react-native';
+import { Image,Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
@@ -36,7 +36,8 @@ export default class Scan extends React.Component {
           justifyContent:'flex-start',
           backgroundColor: '#EBF5FF',
         }}>
-        <View style={{flex: 0.2, flexDirection: 'row',backgroundColor:'#2541B2',justifyContent:"center"}}>
+        <View style={{flex: 0.2, flexDirection: 'row',backgroundColor:'#2541B2',justifyContent:"flex-start"}}>
+        <TouchableOpacity style={styles.img} onPress={() => this.props.navigation.navigate('Menu')}><Image source={require('../assets/menu.png')} style={{width:'89%',height:'89%',marginTop:10, resizeMode:'contain'}}/></TouchableOpacity>
         <Image source={require('../assets/avatar.png')} style={styles.img}/>
         <Text style={styles.patient}>Jane Doe</Text></View>
         <Text style={styles.txt}>Scan your doctor's QR Code</Text>
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
         color:'#EBF5FF',
         textAlign: 'center',
         marginLeft: 10,
-        marginTop: 50
+        marginTop: 40
     },
     img: {
         flex: 0.2,
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
         alignContent: 'flex-start',
         width: '80%',
         height: '80%',
+        marginLeft:20
       },
 
 });

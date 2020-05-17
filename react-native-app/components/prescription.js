@@ -2,21 +2,23 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-export default class Login extends Component {
+export default class Prescription extends Component {
     render(){
         return (
             <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.txt}>Login</Text>
+                <Image source={require('../assets/medicine.png')} style={styles.logo}/>
+                <Text style={styles.txt}>Prescription</Text>
             </View>
-            <Image source={require('../assets/login.png')} style={styles.img}/>
             <View style={styles.presbox}>
-            <TextInput style={styles.input} defaultValue='Username'></TextInput>
-            <TextInput style={styles.input} secureTextEntry={true}>Password</TextInput>
+            <TextInput style={styles.input}>Medication</TextInput>
+            <TextInput style={styles.input}>Dosage</TextInput>
+            <TextInput style={styles.input}>Refill</TextInput>
+            <TextInput style={styles.input}>Refill Count</TextInput>
 
                 <Text style={styles.btn}>Submit</Text>
             </View>
-            
+            <Image source={require('../assets/pres.png')} style={styles.img}/>
             </View>
         )
     }
@@ -33,8 +35,7 @@ const styles = StyleSheet.create({
       flex: 0.3,
       resizeMode: 'contain',
       alignSelf:'center',
-      marginBottom:20,
-      marginTop:50,
+      marginBottom:20
     },
     txt: {
         fontFamily:'Open Sans',

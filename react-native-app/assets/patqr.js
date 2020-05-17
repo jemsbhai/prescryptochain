@@ -3,12 +3,12 @@ import QRCode from 'react-native-qrcode-svg';
 import { StyleSheet, View, Image, Text } from 'react-native';
 
 
-export default class DocQR extends Component {
+export default class PatQR extends Component {
     state = {
         data: ''
      }
      componentDidMount = () => {
-        fetch('https://woodle.ngrok.io/doctor/5ec04ec9f80f9328703088b0', {
+        fetch('https://woodle.ngrok.io/patient/5ec04ed9f80f9328703088b1', {
            method: 'GET'
         })
         .then((response) => response.json())
@@ -28,11 +28,12 @@ export default class DocQR extends Component {
         <Image source={require('../assets/avatar.png')} style={styles.img}/>
         <Text style={styles.txt}>{this.state.data.name}</Text>
           <QRCode
-            value={this.state.data.id}
+            value={this.state.data.publicKey}
             size={200}
             backgroundColor='#EBF5FF'
             color='#03256C'
           />
+           <Text style={styles.btn} onPress={() => this.props.navigation.navigate('Scan')}>Scan Doctor's Code</Text>
         </View>
         );
     }
@@ -59,5 +60,16 @@ const styles = StyleSheet.create({
           color: '#2541B2',
           marginBottom: 80,
 
-      }
+      },
+      btn:{
+        fontFamily:'Open Sans',
+        fontSize:25,
+        backgroundColor:'#03256C',
+        width:'58%',
+        color:'#EEF5FF',
+        padding:10,
+        borderRadius:10,
+        alignSelf:'center',
+        marginTop:60,
+    }
 });     

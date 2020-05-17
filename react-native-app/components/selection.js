@@ -10,9 +10,9 @@ export default class Selection extends Component {
             <Image source={require('../assets/doctors.png')} style={styles.img}/>
             <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C", marginTop: -5}} onPress={() => this.props.navigation.navigate('DocQr')}>Doctor</Text>
             <Image source={require('../assets/patient.png')} style={styles.img}/>
-            <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C"}}onPress={() => this.props.navigation.navigate('Scan')}>Patient</Text>
+            <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C"}}onPress={() => this.props.navigation.navigate('PatQr')}>Patient</Text>
             <Image source={require('../assets/pharmacist.png')} style={styles.img}/>
-            <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C", marginBottom: 70}}onPress={() => console.log('Pharmacist')}>Pharmacist</Text>
+            <Text style={{fontFamily: "Open Sans" ,fontSize: 30, alignSelf: "center", color: "#03256C", marginBottom: 70}}onPress={() => this.props.navigation.navigate('Login')}>Pharmacist</Text>
             </View>
         );
     }
