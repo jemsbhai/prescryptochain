@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 export default class Prescription extends Component {
+    
 
     constructor() {
         super();

@@ -9,7 +9,7 @@ export default class DocMenu extends Component {
             
             <Text style={styles.txt} onPress={() => this.props.navigation.navigate('DocQr')}>Profile</Text>
             <Text style={styles.txt} onPress={() => this.props.navigation.navigate('DocScan')}>Patient</Text>
-            <TouchableOpacity style={styles.img} onPress={() => this.props.navigation.navigate('Scan')}><Image source={require('../assets/x.png')} style={{flex:0.2, resizeMode:'contain', marginTop:50}}/></TouchableOpacity>
+            <TouchableOpacity style={styles.img} onPress={() => this.props.navigation.navigate('DocQr')}><Image source={require('../assets/x.png')} style={{flex:0.2, resizeMode:'contain', marginTop:50}}/></TouchableOpacity>
             </View>
         )
     }

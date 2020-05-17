@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import QRCode from 'react-native-qrcode-svg';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text,TouchableOpacity} from 'react-native';
 
 
 export default class DocQR extends Component {
@@ -25,6 +25,7 @@ export default class DocQR extends Component {
     render() {
         return (
         <View style={styles.container}>
+        <TouchableOpacity style={styles.img} onPress={() => this.props.navigation.navigate('DocMenu')}><Text>MENU</Text></TouchableOpacity>
         <Image source={require('../assets/avatar.png')} style={styles.img}/>
         <Text style={styles.txt}>{this.state.data.name}</Text>
           <QRCode
@@ -51,8 +52,7 @@ const styles = StyleSheet.create({
         alignContent: 'flex-start',
         width: '20%',
         height: '20%',
-        marginLeft: 20,
-        marginTop: 100,
+        marginTop:30,
       },
       txt:{
           fontFamily:"Open Sans",

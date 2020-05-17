@@ -11,15 +11,15 @@ import Constants from 'expo-constants';
 
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    id: '1',
     title: 'Prescription 1',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    id: '2',
     title: 'Prescription 2',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    id: '3',
     title: 'Prescription 3',
   },
 ];
@@ -56,12 +56,13 @@ export default function RxList() {
             id={item.id}
             title={item.title}
             selected={!!selected.get(item.id)}
-            onSelect={onSelect}
+            onPress={() => this.props.navigation.navigate('ViewRx')}
           />
         )}
         keyExtractor={item => item.id}
         extraData={selected}
       />
+      <Text onPress={this.props.navigation.navigate('ViewRx')}>...</Text>
       <Image source={require('../assets/health.png')} style={styles.img}/>
     </SafeAreaView>
     
