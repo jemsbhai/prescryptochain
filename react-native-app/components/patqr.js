@@ -28,7 +28,7 @@ export default class PatQR extends Component {
         <Image source={require('../assets/avatar.png')} style={styles.img}/>
         <Text style={styles.txt}>{this.state.data.name}</Text>
           <QRCode
-            value={this.state.data.publicKey}
+            value={this.state.data.id}
             size={200}
             backgroundColor='#EBF5FF'
             color='#03256C'

@@ -8,7 +8,7 @@ export default class Menu extends Component {
             <Image source={require('../assets/menubg.png')} style={styles.bg}/>
             
             <Text style={styles.txt} onPress={() => this.props.navigation.navigate('Scan')}>Consultation</Text>
-            <Text style={styles.txt} onPress={() => this.props.navigation.navigate('ViewRx')}>Prescription</Text>
+            <Text style={styles.txt} onPress={() => this.props.navigation.navigate('Prescription')}>Prescription</Text>
             <Text style={styles.txt}>Pharmacy</Text>
             <TouchableOpacity style={styles.img} onPress={() => this.props.navigation.navigate('Scan')}><Image source={require('../assets/x.png')} style={{flex:0.2, resizeMode:'contain', marginTop:50}}/></TouchableOpacity>
             </View>

@@ -3,6 +3,24 @@ import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 export default class ViewRx extends Component {
+    state = {
+        data: ''
+     }
+     componentDidMount = () => {
+        fetch('https://woodle.ngrok.io/prescription/0.0.47046', {
+           method: 'GET'
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+           console.log(responseJson);
+           this.setState({
+              data: responseJson
+           })
+        })
+        .catch((error) => {
+           console.error(error);
+        });
+     }
     render(){
         return (
             <View style={styles.container}>
@@ -11,12 +29,12 @@ export default class ViewRx extends Component {
                 <Text style={styles.txt}>Prescription</Text>
             </View>
             <View style={styles.presbox}>
-            <Text style={styles.input}>Medication</Text>
-            <Text style={styles.input}>Dosage</Text>
-            <Text style={styles.input}>Refill</Text>
-            <Text style={styles.input}>Refill Count</Text>
+            <Text style={styles.input}>{this.state.data.drug}</Text>
+            <Text style={styles.input}>{this.state.data.dosage}</Text>
+            <Text style={styles.input}>{this.state.data.refil}</Text>
+            <Text style={styles.input}>{this.state.data.refilRount}</Text>
             <View style={{alignItems:'center'}}><QRCode
-            value="Panadol"
+            value="0.0.47046"
             size={100}
             backgroundColor='#EBF5FF'
             color='#03256C'
