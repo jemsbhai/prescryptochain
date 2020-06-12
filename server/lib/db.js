@@ -31,6 +31,14 @@ async function createPrescription(record) {
     return db.collection('prescriptions').insertOne(record);
 }
 
+async function createHealthRecord(record) {
+    return db.collection('healthRecords').insertOne(record);
+}
+
+async function findHealthRecord(fileId) {
+    return db.collection('healthRecords').findOne({ fileId })
+}
+
 async function findPrescription(fileId) {
     return db.collection('prescriptions').findOne({ fileId })
 }
@@ -40,5 +48,7 @@ module.exports = {
     getDoctor,
     getPatient,
     createPrescription,
-    findPrescription
+    findPrescription,
+    createHealthRecord,
+    findHealthRecord
 }

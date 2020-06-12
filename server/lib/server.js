@@ -12,6 +12,60 @@ router
         log('here');
         res.sendStatus(200);
     })
+    .post('/healthRecord', async (req, res, next) => {
+        try {
+            log(req.body)
+            const patientId = req.body.patient;
+            const doctor = req.body.doctor;
+            const record = req.body.record;
+
+            const patient = await db.getPatient(patientId);
+
+            const encrypedFile = await encryptJson(record, patient.publicKey, 'public')
+            log(encrypedFile);
+            const fileId = await hedera.upload(encrypedFile);
+
+            const record = {
+                patientId,
+                doctor,
+                fileId: fileId.toString(),
+                created: new Date()
+            };
+
+            const result = await db.createHealthRecord(record);
+            if (result && result.ops[0])
+                return res.send(result.ops[0]);
+            else {
+                return res.send(result);
+            }
+        } catch (error) {
+            log(error);
+            next(error);
+        }
+
+    })
+    .get('/healthRecord/:fileId', async (req, res, next) => {
+        try {
+            const fileId = req.params.fileId;
+            log(fileId)
+            const record = await db.findHealthRecord(fileId);
+            if (!record) throw new Error('Cant find health record');
+            log(record);
+
+            const encryptedFile = await hedera.download(fileId);
+            log(encryptedFile);
+
+
+            const patient = await db.getPatient(prescription.patientId);
+            if (!patient) throw new Error('Cant find patient');
+            const decryptedFile = await decryptJson(encryptedFile, patient.publicKey, 'public');
+            log(encryptedFile);
+            res.send(decryptedFile);
+        } catch (error) {
+            log(error);
+            next(error);
+        }
+    })
     .post('/prescription', async (req, res, next) => {
         try {
             log(req.body)
