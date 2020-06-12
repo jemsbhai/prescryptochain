@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const app = express()
-const port = process.env.POST || 3000;
+const port = process.env.PORT || 3000;
 
 const log = require('debug')('pxc:index');
 

@@ -17,11 +17,11 @@ router
             log(req.body)
             const patientId = req.body.patient;
             const doctor = req.body.doctor;
-            const record = req.body.record;
+            const rec = req.body.record;
 
             const patient = await db.getPatient(patientId);
 
-            const encrypedFile = await encryptJson(record, patient.publicKey, 'public')
+            const encrypedFile = await encryptJson(rec, patient.publicKey, 'public')
             log(encrypedFile);
             const fileId = await hedera.upload(encrypedFile);
 
@@ -56,7 +56,7 @@ router
             log(encryptedFile);
 
 
-            const patient = await db.getPatient(prescription.patientId);
+            const patient = await db.getPatient(record.patientId);
             if (!patient) throw new Error('Cant find patient');
             const decryptedFile = await decryptJson(encryptedFile, patient.publicKey, 'public');
             log(encryptedFile);
